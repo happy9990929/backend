@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>關於我們</h1>
+    <h1>完成訂單</h1>
   </div>
 </template>
