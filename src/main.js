@@ -1,21 +1,21 @@
 import Vue from 'vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
+import jquery from 'jquery';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+// Loading 套件
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/dist/jquery.slim.min';
-import 'popper.js/dist/popper.min';
-import 'bootstrap/dist/js/bootstrap.min';
-import './assets/css/style.scss';
+// import 'popper.js/dist/popper.min';
+// import 'bootstrap/dist/js/bootstrap.min';
+import 'bootstrap';
+import '../public/js/fontAwsome_all.min';
 
-library.add(fab, far, fas);
-Vue.component('font-awesome-icon', FontAwesomeIcon);
-
+window.$ = jquery;
+Vue.use(VueAxios, axios);
+Vue.use(Loading);
 Vue.config.productionTip = false;
 
 new Vue({

@@ -1,0 +1,99 @@
+@import '~bootstrap/scss/functions'; // 官方的
+@import '@/assets/scss/_variables'; // 自己的
+@import '~bootstrap/scss/mixins'; // 官方的
+@import '~bootstrap';
+
+.logo {
+  width: 100px;
+}
+.navBar {
+  width: 100%;
+  background-color: #313a46;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.navItem {
+  color: #8391a2;
+  width: 100%;
+  padding: .5rem 0 .5rem 35%;
+  transition: all .2s ease;
+  cursor: pointer;
+  &:hover {
+    color: #cedce4;
+    background-color: #424d5a;
+  }
+  &.router-link-active {
+    color: #ffffff;
+    background-color: #424d5a;
+  }
+}
+.btn-orange {
+  box-shadow: 0 2px 6px 0 rgba(250, 165, 92, .7);
+  &:hover {
+    background-color: #ff8d17;
+    border-color: transparent;
+  }
+}
+.card {
+  border: none;
+  box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+  margin-bottom: 24px;
+}
+.thead {
+  background-color: #f1f3fa;
+  border-color: #eef2f7;
+}
+.table th, .table td {
+  vertical-align: middle;
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 0;
+  font-weight: normal;
+}
+.pagination-rounded .page-link {
+  border-radius: 100%;
+  margin: 0 3px;
+  border: none;
+}
+.page-link {
+  display: block;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+  color: #313a46;
+  background-color: #fff;
+}
+.page-item {
+  &.active 
+    .page-link{
+    z-index: 3;
+    color: #fff;
+    background-color: #a5a6af;
+    border-color: #a5a6af;
+  }
+}
+@media screen and (min-width:768px){
+  .logo {
+    width: 170px;
+  }
+  .navBar {
+    bottom: 0;
+    width: 260px;
+  }
+  .content {
+    margin-left: 260px;
+  }
+  .navItem {
+    width: 75%;
+    padding: .8rem;
+    margin: .5rem auto;
+    &:hover {
+      background-color: initial;
+    }
+    &.router-link-active {
+      background-color: initial;
+    }
+  }
+}
