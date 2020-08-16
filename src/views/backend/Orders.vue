@@ -15,39 +15,79 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Mark</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+              <tr v-for="item in orders" :key="item.id">
+                <td>{{ item.created.datetime }}</td>
+                <td>
+                  <ul class="list-unstyled">
+                    <li
+                      v-for="(product, i) in item.products"
+                      :key="i"
+                    >
+                      {{ product.product.title }} 數量：{{ product.quantity }}
+                      {{ product.product.unit }}
+                    </li>
+                  </ul>
+                </td>
+                <td>{{ item.payment }}</td>
+                <td>{{ item.amount }}</td>
                 <td>
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                    <label class="custom-control-label" for="customSwitch1">尚未付款</label>
+                    <input type="checkbox" class="custom-control-input"
+                    id="customSwitch1" :checkd="item.paid" @change="setOrderPaid(item)">
+                    <label class="custom-control-label" for="customSwitch1"></label>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <nav class="mt-5">
-          <ul class="pagination pagination-rounded justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination :pages="pagination" @go-page="getOrders"/>
       </div>
     </div>
   </div>
 </template>
+<script>
+import Pagination from '@/components/Pagination.vue';
+
+export default {
+  components: {
+    Pagination,
+  },
+  data() {
+    return {
+      orders: {
+      },
+      pagination: {},
+    };
+  },
+  created() {
+    this.getOrders();
+  },
+  methods: {
+    getOrders(page = 1) {
+      const loader = this.$loading.show();
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/orders?page=${page}`;
+      this.$http.get(api).then((res) => {
+        loader.hide();
+        this.orders = res.data.data;
+        this.pagination = res.data.meta.pagination;
+      }).catch((error) => {
+        loader.hide();
+        console.log(error);
+      });
+    },
+    setOrderPaid(item) {
+      const loader = this.$loading.show();
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/paid`;
+      this.$http.patch(api, item.id).then((res) => {
+        loader.hide();
+        console.log(res);
+        this.getOrders();
+      }).catch((error) => {
+        loader.hide();
+        console.log(error);
+      });
+    },
+  },
+};
+</script>
