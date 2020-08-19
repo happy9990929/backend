@@ -61,10 +61,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <div v-if="isNew">
-              <h5 class="modal-title" id="exampleModalLabel">新增產品</h5>
+              <h5 class="modal-title">新增產品</h5>
             </div>
             <div v-else>
-              <h5 class="modal-title" id="exampleModalLabel">編輯 {{ temProduct.title }} 產品</h5>
+              <h5 class="modal-title">編輯 {{ temProduct.title }} 產品</h5>
             </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -246,24 +246,24 @@ export default {
       const loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/products?page=${page}`;
       this.$http.get(api).then((res) => {
-        loader.hide();
         this.products = res.data.data;
         this.pagination = res.data.meta.pagination;
-      }).catch((error) => {
         loader.hide();
+      }).catch((error) => {
         console.log(error);
+        loader.hide();
       });
     },
     getDetails(id) {
       const loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/product/${id}`;
       this.$http.get(api).then((res) => {
-        loader.hide();
         this.temProduct = res.data.data;
         $('#product').modal('show');
-      }).catch((error) => {
         loader.hide();
+      }).catch((error) => {
         console.log(error);
+        loader.hide();
       });
     },
     openModal(isNew, item) {
@@ -297,12 +297,12 @@ export default {
         httpMethod = 'patch';
       }
       this.$http[httpMethod](api, this.temProduct).then(() => {
-        loader.hide();
         $('#product').modal('hide');
         this.getProducts();
-      }).catch((error) => {
         loader.hide();
+      }).catch((error) => {
         console.log(error);
+        loader.hide();
       });
     },
     delProduct() {
