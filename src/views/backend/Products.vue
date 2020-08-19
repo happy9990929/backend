@@ -83,21 +83,21 @@
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
-                    <i
-                      v-if="status.fileUploading"
-                      class="fas fa-spinner fa-spin"
-                    />
+                    <span v-if="status.fileUploading">
+                      <i class="fas fa-spinner fa-spin"/>
+                    </span>
                   </label>
-                  <input type="file"
+                  <input
+                  type="file"
                   id="customFile"
-                  placeholder="請輸入圖片連結"
                   ref="file"
-                  class="form-control">
+                  class="form-control"
+                  @change="uploadFile"
+                  >
                 </div>
                 <img
                     class="img-fluid"
                     :src="temProduct.imageUrl[0]"
-                    alt
                   >
               </div>
               <div class="col-sm-8">
@@ -152,7 +152,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             <button type="button" class="btn btn-orange" @click="updateProduct">確認</button>
           </div>
         </div>
@@ -331,6 +331,7 @@ export default {
         },
       }).then((res) => {
         this.status.fileUploading = false;
+        console.log(res);
         if (res.status === 200) {
           this.temProduct.imageUrl.push(res.data.data.path);
         }
@@ -347,7 +348,7 @@ export default {
     width: 100%;
     min-width: 100px;
     height: 100px;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
   }
