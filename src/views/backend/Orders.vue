@@ -18,7 +18,7 @@
               <tr v-for="item in orders" :key="item.id">
                 <td>{{ item.created.datetime }}</td>
                 <td>
-                  <ul class="list-unstyled">
+                  <ul class="list-unstyled mb-0">
                     <li
                       v-for="(product, i) in item.products"
                       :key="i"
