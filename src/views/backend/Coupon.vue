@@ -30,7 +30,7 @@
                     <label class="custom-control-label" for="customSwitch1"></label>
                   </div>
                 </td>
-                <td class="text-right">
+                <td class="text-right text-nowrap">
                   <button class="btn btn-outline-orange mx-1" @click="openModal('edit',item)">
                     <i class="far fa-edit"></i>
                   </button>
