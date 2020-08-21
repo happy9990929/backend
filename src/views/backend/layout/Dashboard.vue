@@ -2,7 +2,7 @@
   <div>
     <nav class="navBar navbar navbar-dark p-0">
       <div class="logo mx-md-auto ml-md-0 my-md-0 ml-3 my-3">
-        <img src="/images/logo.png" class="img-fluid"/>
+        <img src="@/assets/images/logo.png" class="img-fluid"/>
       </div>
       <button class="navbar-toggler mr-md-0 mr-3 d-md-none" type="button" data-toggle="collapse"
       data-target="#navbarNav" aria-controls="navbarNav"

@@ -50,7 +50,7 @@ export default {
 </script>
 <style scoped>
 .loginContent {
-  background-image: url('/images/login/banner.jpg');
+  background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/DBSwan0nkQnfAyiTZqnv4wGF3P3IiRty6uVnAhCGQtLMQD0DDcW19ke1mYXDzGWuGLNczo90DxRAl0HfqUER1ZRUPYAICKX67A2yhiQmOj80xcHSZTWzpdFIjmYvJdvY.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
