@@ -7,10 +7,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import App from './App.vue';
 import router from './router';
-// import 'popper.js/dist/popper.min';
-// import 'bootstrap/dist/js/bootstrap.min';
 import 'bootstrap';
-import '../public/js/fontAwsome_all.min';
 
 window.$ = jquery;
 Vue.use(VueAxios, axios);
